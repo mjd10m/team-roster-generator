@@ -1,11 +1,11 @@
 const Manager = require("../lib/Manager")
-
+//capitalizes the first letter of a string
 function capFirstLetter(string) {
     const str = string
     const str2 = str.charAt(0).toUpperCase() + str.slice(1)
     return str2
 }
-
+//return the correct icon depending on employees role
 function getIcon(employee) {
     if (employee.getRole() === 'Manager') {
         return `<i class="fa-solid fa-mug-saucer"></i>`
@@ -15,23 +15,24 @@ function getIcon(employee) {
         return `<i class="fa-solid fa-graduation-cap"></i>`
     }
 }
-
+//creates the html card for the employee
 function createEmployeeCard(employee) {
             return  `<div class="col-4 mt-5">
                 <div class="card">
                     <div class="card-header text-center bg-primary text-white fw-bold">
-                        <div class="fs-3">${capFirstLetter(employee.name)}</div>
+                        <div class="fs-3">${capFirstLetter(employee.getName())}</div>
                         <div class="fs-5">${getIcon(employee)} ${employee.getRole()}</div>
                     </div>
                     <ul class="list-group py-5 px-3">
-                    <li class="list-group-item">Employee ID: ${employee.id}</li>
-                    <li class="list-group-item">Employee Email: <a href="mailto:${employee.email}">${employee.email}</a></li>
+                    <li class="list-group-item">Employee ID: ${employee.getId()}</li>
+                    <li class="list-group-item">Employee Email: <a href="mailto:${employee.getEmail()}">${employee.getEmail()}</a></li>
                     <li class="list-group-item">${addEmployeeSpecialDesc(employee)}</li>
                     </ul>
                 </div>
             </div>
             `
 }
+//adds the specialized list item that matches the role of the employee
 function addEmployeeSpecialDesc(employee) {
     if (employee.getRole() === 'Manager') {
         return `Office Number: ${employee.officeNumber}`
@@ -43,7 +44,7 @@ function addEmployeeSpecialDesc(employee) {
 }
 
 
-
+//creates the HTML markdown for the MY TEAM site
 function createHTML(teamArray) {
 return `
 <!DOCTYPE html>
